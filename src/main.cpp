@@ -1,24 +1,25 @@
 #include <iostream>
 #include <cmath>
+
 #include "complex_n.h"
 #include "bitmap.h"
 #include "color.h"
 
 
-
 int main(){
 
-    int height , width;
-    height = 1080;
-    width = 1920;
+    const int MAX_MODULUS = 10;
     char* imageFileName = (char*) "Mandelbrot.bmp";
-    int iterations = 200;
-    Complex z, c;
-    int r, g, b;
-    double x = 2, y = 0; //center of the image;
-    double range = 0.5;//range of numbers in the real number line that will be taken into account;
-    double pixelSize = range/width;
+    int height , width;
+    height = 4000;
+    width = 4000;
     
+    int iterations = 100;
+    double x = 0, y = 0; //center of the image;
+    double range = 4;//range of numbers in the real number line that will be taken into account;
+    double pixelSize = range/width;
+    Complex z, c;
+    int r, g, b;    
 
     //reservamos memoria para la imagen
     unsigned char *** image = new unsigned char **[height];
@@ -30,7 +31,6 @@ int main(){
     }
 
 
-
     for(int i =- height/2; i < height/2; i++){
         for(int j = -width/2; j < width/2; j++){
 
@@ -40,15 +40,15 @@ int main(){
             z.setReal(0);
 
             for(int k = 0; k < iterations; k++){
-                z=z*z*z+c;
+                z=z*z+c;
+                if(z.getAlpha() < MAX_MODULUS){
+                    r=g=b=0;
+                    colorAnguloSeno(((double)k/iterations)*M_PI,r,g,b);
+                    image[i+height/2][j+width/2][0] = (unsigned char) (b);
+                    image[i+height/2][j+width/2][1] = (unsigned char) (g);
+                    image[i+height/2][j+width/2][2] = (unsigned char) (r);
+                }
             }
-
-            r=g=b=0;
-            colorAnguloSeno(z.getAlpha(),r,g,b);
-            image[i+height/2][j+width/2][0] = (unsigned char) (b);
-            image[i+height/2][j+width/2][1] = (unsigned char) (g);
-            image[i+height/2][j+width/2][2] = (unsigned char) (r);
-            
         }
     }
     
