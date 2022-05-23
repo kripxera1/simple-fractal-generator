@@ -1,0 +1,10 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/kripxera/Escritorio/Proyectos/Fractales/Fractal Simple'
+g++ -Wall -g -fopenmp -Iinclude -c --std=c++14  src/main.cpp -o  obj/main.o 
+g++ -Wall -g -fopenmp -Iinclude -c --std=c++14  src/complex_n.cpp -o  obj/complex_n.o
+g++ -Wall -g -fopenmp -Iinclude -c --std=c++14  src/bitmap.cpp -o  obj/bitmap.o	
+g++ -Wall -g -fopenmp -Iinclude -c --std=c++14 src/color.cpp -o obj/color.o
+g++ -o bin/main -fopenmp obj/main.o obj/complex_n.o \
+obj/bitmap.o obj/color.o
+make: Leaving directory '/home/kripxera/Escritorio/Proyectos/Fractales/Fractal Simple'
+ 

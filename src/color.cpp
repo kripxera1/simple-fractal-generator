@@ -54,3 +54,7 @@ void colorAnguloRectas(double alpha, int& r, int& g, int& b){
         b = (255.0/120)*(alphaGrad-240)+255;
     }
 }
+
+void colorIterSeno(int iter, int maxIter, int& r, int& g, int& b){
+    colorAnguloSeno(2*M_PI*iter/maxIter-M_PI, r, g, b);
+}
