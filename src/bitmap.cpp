@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <cstdio>
 #include "bitmap.h"
 
 using namespace std;
