@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu May 26 05:55:30 2022
+# Make data base, printed on Thu May 26 17:59:16 2022
 
 # Variables
 
@@ -32,9 +32,8 @@ XDG_SESSION_TYPE = x11
 VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
- 
-# environment
-IM_CONFIG_PHASE = 1
+# makefile (from 'makefile', line 7)
+CPPFLAGS = -Wall -g -fopenmp -I$(INC) -c -O3 --std=c++14
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -50,11 +49,11 @@ SHELL = /bin/sh
 # makefile (from 'makefile', line 5)
 BIN = bin
 # environment
+VTE_VERSION = 6003
+# environment
 VSCODE_NLS_CONFIG = {"locale":"es","availableLanguages":{},"_languagePackSupport":true}
 # environment
-_ = /usr/share/code/code
-# environment
-JOURNAL_STREAM = 8:37572
+JOURNAL_STREAM = 8:46571
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'makefile', line 1)
@@ -62,23 +61,23 @@ MAKEFILE_LIST :=  makefile
 # automatic
 @F = $(notdir $@)
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+IM_CONFIG_PHASE = 1
 # environment
 USERNAME = kripxera
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=f986a46cedb4676356aed197628a4713
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from 'makefile', line 7)
-CPPFLAGS = -Wall -g -fopenmp -I$(INC) -c --std=c++14
+# environment
+_ = /usr/bin/code
 # environment
 MANAGERPID = 1846
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
-VSCODE_CWD = /home/kripxera
+VSCODE_CWD = /home/kripxera/Escritorio/Proyectos/Fractales/Fractal Simple
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -96,17 +95,15 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 30d0e1dce6fe485f914c1f348a99faee
+INVOCATION_ID = 299b894b10d54f4ab25fa3aba54dc5c5
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
-LS_COLORS = 
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
-# environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 329541
 # automatic
 %F = $(notdir $%)
 # environment
@@ -130,11 +127,15 @@ HOME = /home/kripxera
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
+VSCODE_CLI = 1
+# environment
 VSCODE_CODE_CACHE_PATH = /home/kripxera/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
 LOGNAME = kripxera
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -143,6 +144,8 @@ GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
 MAKELEVEL := 0
+# environment
+COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
 # default
@@ -150,11 +153,11 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SHLVL = 0
+SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-fb4362f4-4677-484b-8e5d-4ef4d0c99905.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d2b2b54e-9f6b-4cbc-b2df-ff4db4c18165.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -198,9 +201,13 @@ CXX = g++
 # environment
 LC_ALL = C
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+DBUS_STARTER_BUS_TYPE = session
+# environment
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/7c00006d_acd9_4c5f_8a3e_17fc55a16df5
 # automatic
 ^F = $(notdir $^)
+# environment
+GNOME_TERMINAL_SERVICE = :1.11103
 # default
 SUFFIXES := 
 # environment
@@ -209,16 +216,18 @@ CHROME_DESKTOP = code-url-handler.desktop
 WINDOWPATH = 2
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
-# environment
-GJS_DEBUG_OUTPUT = stderr
 # default
 .RECIPEPREFIX := 
 # environment
 LANG = C
 # environment
-VSCODE_PID = 329541
+TERM = xterm-256color
+# environment
+VSCODE_PID = 336620
+# environment
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=f986a46cedb4676356aed197628a4713
 # variable set hash-table stats:
-# Load=103/1024=10%, Rehash=0, Collisions=23/147=16%
+# Load=108/1024=11%, Rehash=0, Collisions=23/152=15%
 
 # Pattern-specific Variable Values
 
@@ -226,10 +235,9 @@ VSCODE_PID = 329541
 
 # Directories
 
-# . (device 2051, inode 8915512): 50 files, no impossibilities.
+# . (device 2051, inode 8915512): 57 files, no impossibilities.
 
- 
-# 50 files, no impossibilities in 1 directories.
+# 57 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -269,7 +277,7 @@ src/bitmap.cpp:
 
 obj/main.o: src/main.cpp include/complex_n.h include/bitmap.h
 #  Implicit rule search has not been done.
-#  Last modified 2022-05-26 05:35:28.410483289
+#  Last modified 2022-05-26 17:58:25.319709182
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 18):
@@ -278,7 +286,8 @@ obj/main.o: src/main.cpp include/complex_n.h include/bitmap.h
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-23 20:08:28.046033902
+ 
+#  Last modified 2022-05-26 17:57:59.763708047
 #  File has been updated.
 #  Successfully updated.
 
@@ -297,7 +306,7 @@ include/color.h:
 
 obj/complex_n.o: src/complex_n.cpp include/complex_n.h
 #  Implicit rule search has not been done.
-#  Last modified 2022-05-26 02:12:45.775450283
+#  Last modified 2022-05-26 17:58:25.391709185
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 24):
@@ -305,8 +314,7 @@ obj/complex_n.o: src/complex_n.cpp include/complex_n.h
 
 obj/bitmap.o: src/bitmap.cpp include/bitmap.h
 #  Implicit rule search has not been done.
- 
-#  Last modified 2022-05-26 02:12:45.799450258
+#  Last modified 2022-05-26 17:58:25.431709186
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 21):
@@ -322,13 +330,13 @@ clean:
 # Not a target:
 src/main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-26 05:35:26.362486894
+#  Last modified 2022-05-26 17:54:42.959687622
 #  File has been updated.
 #  Successfully updated.
 
 obj/color.o: src/color.cpp include/color.h
 #  Implicit rule search has not been done.
-#  Last modified 2022-05-26 02:12:45.8554502
+#  Last modified 2022-05-26 17:58:25.53170919
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 27):
@@ -343,11 +351,11 @@ src/color.cpp:
 
 bin/main: obj/main.o obj/complex_n.o obj/bitmap.o obj/color.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-05-26 05:35:28.462483198
+#  Last modified 2022-05-26 17:58:25.595709192
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 14):
-	$(CXX) -o $(BIN)/main -fopenmp $(OBJ)/main.o $(OBJ)/complex_n.o \
+	$(CXX) -o $(BIN)/main -fopenmp -O3 $(OBJ)/main.o $(OBJ)/complex_n.o \
 	$(OBJ)/bitmap.o $(OBJ)/color.o
 
 # Not a target:
@@ -372,13 +380,12 @@ include/bitmap.h:
 
 # No general ('VPATH' variable) search path.
 
- 
-# strcache buffers: 1 (0) / strings = 69 / storage = 561 B / avg = 8 B
-# current buf: size = 8162 B / used = 561 B / count = 69 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 76 / storage = 610 B / avg = 8 B
+# current buf: size = 8162 B / used = 610 B / count = 76 / avg = 8 B
 
-# strcache performance: lookups = 90 / hit rate = 23%
+# strcache performance: lookups = 97 / hit rate = 21%
 # hash-table stats:
-# Load=69/8192=1%, Rehash=0, Collisions=10/90=11%
-# Finished Make data base on Thu May 26 05:55:30 2022
+# Load=76/8192=1%, Rehash=0, Collisions=10/97=10%
+# Finished Make data base on Thu May 26 17:59:16 2022
 
  
