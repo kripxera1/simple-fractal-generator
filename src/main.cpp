@@ -7,7 +7,7 @@
 #include "color.h"
 
 const int MAX_MODULUS = 10;
-
+const int MIN_RECURSION_SIZE = 20;
 void bruteForceMandelbrot(unsigned char *** image, int iterations,
                           double pixelSize, double x, double y ,
                           int width, int height);
@@ -15,7 +15,7 @@ void bruteForceMandelbrot(unsigned char *** image, int iterations,
 void optimizationMandelbrot(unsigned char *** image, int iBegin , int jBegin,
                             int iEnd, int jEnd, int iterations,
                             double pixelSize, double x, double y ,
-                            int width, int height);
+                            int width, int height, int minRecSize);
 
 void MandelbrotPixel(unsigned char *** image, double imag, double real, int i,
                      int j, int iterations);
@@ -25,17 +25,18 @@ int main(){
 
     std::string fileName = "Mandelbrot";
     int height , width;
-    height = 360;
-    width = 640;
-    int totalFrames = 1000;
+    height = 720;
+    width = 1280;
+    int totalFrames = 1080;
     long iterations;
     double x = -0.77568377, y = 0.13646737; //center of the image;
 
     double range = 4;//range of numbers in the real number line
     double pixelSize = range/width;
     double zoomIncrement = 1.075;
-    double zoom = 1000000;
+    double zoom = 1;
     double imageRange;
+    int minRecSize = 27;
 
     //reservamos memoria para la imagen
     unsigned char *** image = new unsigned char **[height];
@@ -45,24 +46,32 @@ int main(){
             image[i][j] = new unsigned char[BYTES_PER_PIXEL];
         }
     }
-    
     for(int frame = 0; frame < totalFrames; frame++){
                 zoom *= zoomIncrement;
         imageRange = range * 1/zoom;
         pixelSize = imageRange/width;
         iterations = (int)(sqrt(2*sqrt(abs(1-sqrt(5*zoom))))*66.5);
-        
-        //optimizationMandelbrot(image,-height/2,-width/2,height/2,width/2,
-        //                       iterations,pixelSize,x,y,width,height);
-        
-        bruteForceMandelbrot(image,iterations,pixelSize,x,y,width,height);
-        generateBitmapImage(image, height, width,
-                            (char *)(std::to_string(frame) + ".bmp").c_str());
 
+        auto startOptimization = std::chrono::high_resolution_clock::now();
+        optimizationMandelbrot(image,-height/2,-width/2,height/2,width/2,
+                               iterations,pixelSize,x,y,width,height,minRecSize);
+        auto endOptimization = std::chrono::high_resolution_clock::now();
+        generateBitmapImage(image, height, width,
+                            (char *)(std::to_string(frame) + "opt.bmp").c_str());
+        /*auto startBruteForce = std::chrono::high_resolution_clock::now();
+        bruteForceMandelbrot(image,iterations,pixelSize,x,y,width,height);
+        auto endBruteForce = std::chrono::high_resolution_clock::now();
+        generateBitmapImage(image, height, width,
+                            (char *)(std::to_string(frame) + "brt.bmp").c_str());
+        */auto tOptimization = endOptimization - startOptimization;/*
+        auto tBruteForce = endBruteForce - startBruteForce;
+        double ratio = (double)tOptimization.count()/tBruteForce.count();
+        std::cout << ratio << std::endl;*/
+        auto durOpt = std::chrono::duration_cast<std::chrono::milliseconds>(tOptimization);
+        std::cout << durOpt.count() << std::endl;
     }
-        
-    
     return 0;
+    
 }
 
 // useful if image size is over 1080x1920
@@ -83,13 +92,24 @@ void bruteForceMandelbrot(unsigned char *** image, int iterations,
 void optimizationMandelbrot(unsigned char *** image, int iBegin , int jBegin,
                             int iEnd, int jEnd, int iterations,
                             double pixelSize, double x, double y,
-                            int width, int height){
+                            int width, int height, int minRecSize){
     
     int jCenter = (jEnd - jBegin)/2 + jBegin,
         iCenter = (iEnd - iBegin)/2 + iBegin;
     //end of recursion
-    if( iBegin == iEnd || jBegin == jEnd)
+    if(iEnd-iBegin < minRecSize||jEnd-jBegin < minRecSize){
+        for(int i = iBegin; i < iEnd; i++){
+            #pragma omp parallel for num_threads(6)
+            for(int j = jBegin; j < jEnd; j++){
+                MandelbrotPixel(image,pixelSize*i+y,pixelSize*j+x,i+height/2,j+width/2,iterations);
+            }
+            #pragma omp barrier
+        }
         return;
+    }
+        
+    
+
     //fill the vertical borders
 
     for(int k = iBegin; k < iEnd; k++){
@@ -107,13 +127,13 @@ void optimizationMandelbrot(unsigned char *** image, int iBegin , int jBegin,
            image[k-1+height/2][jEnd-1+width/2][0]){
             // first,second,third and fourth cuadrant
             optimizationMandelbrot(image,iBegin,jCenter,iCenter,jEnd,
-                                   iterations,pixelSize,x,y,width,height);
+                                   iterations,pixelSize,x,y,width,height,minRecSize);
             optimizationMandelbrot(image,iBegin,jBegin,iCenter,jCenter,
-                                   iterations,pixelSize,x,y,width,height);
+                                   iterations,pixelSize,x,y,width,height,minRecSize);
             optimizationMandelbrot(image,iCenter,jBegin,iEnd,jCenter,
-                                   iterations,pixelSize,x,y,width,height);
+                                   iterations,pixelSize,x,y,width,height,minRecSize);
             optimizationMandelbrot(image,iCenter,jCenter,iEnd,jEnd,
-                                   iterations,pixelSize,x,y,width,height);
+                                   iterations,pixelSize,x,y,width,height,minRecSize);
             return;
         }
     //fill the horizontal borders
@@ -131,18 +151,20 @@ void optimizationMandelbrot(unsigned char *** image, int iBegin , int jBegin,
            image[iEnd-1+height/2][k+width/2][0] !=
            image[iEnd-1+height/2][k-1+width/2][0]){
             // first,second,third and fourth cuadrant
+            
             optimizationMandelbrot(image,iBegin,jCenter,iCenter,jEnd,
-                                   iterations,pixelSize,x,y,width,height);
+                                   iterations,pixelSize,x,y,width,height,minRecSize);
             optimizationMandelbrot(image,iBegin,jBegin,iCenter,jCenter,
-                                   iterations,pixelSize,x,y,width,height);
+                                   iterations,pixelSize,x,y,width,height,minRecSize);
             optimizationMandelbrot(image,iCenter,jBegin,iEnd,jCenter,
-                                   iterations,pixelSize,x,y,width,height);
+                                   iterations,pixelSize,x,y,width,height,minRecSize);
             optimizationMandelbrot(image,iCenter,jCenter,iEnd,jEnd,
-                                   iterations,pixelSize,x,y,width,height);
+                                   iterations,pixelSize,x,y,width,height,minRecSize);
             return;
         }
-    
+
     //if the borders are homogeneous, fill the rectangle
+    
     unsigned char rAbs = image[iCenter+height/2][jBegin+width/2][2],
                   gAbs = image[iCenter+height/2][jBegin+width/2][1],
                   bAbs = image[iCenter+height/2][jBegin+width/2][0];
@@ -154,6 +176,7 @@ void optimizationMandelbrot(unsigned char *** image, int iBegin , int jBegin,
             image[i+height/2][j+width/2][0] = bAbs;
         }
     #pragma omp barrier
+    
 }
 
 

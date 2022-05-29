@@ -4,14 +4,14 @@ INC = include
 OBJ = obj
 BIN = bin
 CXX = g++
-CPPFLAGS = -Wall -g -fopenmp -I$(INC) -c -O3 --std=c++14
+CPPFLAGS = -Wall -g -fopenmp -I$(INC) -c --std=c++14
 
 all:$(BIN)/main 
 	
 # ************ Compilación de módulos ************
 
 $(BIN)/main: $(OBJ)/main.o $(OBJ)/complex_n.o $(OBJ)/bitmap.o $(OBJ)/color.o
-	$(CXX) -o $(BIN)/main -fopenmp -O3 $(OBJ)/main.o $(OBJ)/complex_n.o \
+	$(CXX) -o $(BIN)/main -fopenmp -g  $(OBJ)/main.o $(OBJ)/complex_n.o \
 	$(OBJ)/bitmap.o $(OBJ)/color.o
 
 $(OBJ)/main.o: $(SRC)/main.cpp $(INC)/complex_n.h $(INC)/bitmap.h 

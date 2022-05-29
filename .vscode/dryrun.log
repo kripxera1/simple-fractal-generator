@@ -1,5 +1,3 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory '/home/kripxera/Escritorio/Proyectos/Fractales/Fractal Simple'
-make: 'all' is up to date.
-make: Leaving directory '/home/kripxera/Escritorio/Proyectos/Fractales/Fractal Simple'
- 
+make --dry-run --always-make --keep-going --print-directory
+/bin/sh: 1: make: not found
+

@@ -1,6 +1,6 @@
 {
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
-        "cmath": "cpp"
+        "chrono": "cpp"
     }
 }
